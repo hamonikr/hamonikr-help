@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Real Username
+RUID=$(who | awk 'FNR == 1 {print $1}')
+# Real User ID
+RUSER_UID=$(id -u ${RUID})
+
+if [ "x${RUID}" != "xroot" ]; then
+
+    if [ -f "/home/${RUID}/.config/user-dirs.dirs" ]; then
+        DT=$(sed -n -e 's|^XDG_DESKTOP_DIR="$HOME/||gp'  /home/${RUID}/.config/user-dirs.dirs | sed -n -e 's/"//gp')
+        DT_NAME="/home/${RUID}/$DT"            
+    elif [ ! -f "/home/${RUID}/.config/user-dirs.dirs" ] && [ -f "/etc/xdg/user-dirs.defaults" ]; then
+        source /etc/xdg/user-dirs.defaults
+        DT_NAME="/home/${RUID}/$DESKTOP"
+    fi
+
+    if [ -f "${DT_NAME}/hamonikr-help.desktop" ]; then
+        rm -f ${DT_NAME}/hamonikr-help.desktop
+    fi
+
+fi

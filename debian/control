@@ -1,0 +1,12 @@
+Source: hamonikr-help
+Section: utils
+Priority: optional
+Maintainer: HamoniKR <pkg@hamonikr.org>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.5
+
+Package: hamonikr-help
+Architecture: all
+Depends: xdg-utils, zenity
+Description: Help for HamoniKR
+ 하모니카 리눅스의 도움말.
