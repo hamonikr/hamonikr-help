@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Help
+Name[ko]=하모니카 도움말
+Comment=Help for HamoniKR
+Comment[ko]=하모니카 사용자를 위한 도움말
+Icon=hamonikr-help
+Exec=yelp
+Terminal=false
+Categories=Settings;
+Keywords=help;도움말;
