@@ -1,3 +1,9 @@
+hamonikr-help (1.1.0) focal; urgency=medium
+
+  * Register shortcut F1 as help
+
+ -- HamoniKR <pkg@hamonikr.org>  Fri, 23 Jul 2021 17:51:52 +0900
+
 hamonikr-help (1.0.0) jin; urgency=medium
 
   * Release for HamoniKR 4.0 
