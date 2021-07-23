@@ -7,6 +7,22 @@ case "$1" in
         # Real User ID
         RUSER_UID=$(id -u ${RUID})
 
+        # F1 단축키를 자동으로 추가하는 기능
+        function addKeyboardShortcut() {
+
+            IFS=', ' read -r -a array <<< `sudo -u ${RUID} DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RUSER_UID}/bus" gsettings get org.cinnamon.desktop.keybindings.media-keys help | tr -d '[' | tr -d ']'`
+            # echo "the number of elements in an array : ${#array[@]}"
+            # echo "the value of elements in an array : ${array[-1]}"
+            # echo "last index value : ${array[@]: -1:1}"
+            # echo "index number: ${!array[@]}"
+
+            if [[ "${array[-1]}" != "F1" ]] ; then
+                sudo -u ${RUID} DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RUSER_UID}/bus" gsettings set org.cinnamon.desktop.keybindings.media-keys help "['F1']"
+            fi
+        }
+
+        addKeyboardShortcut || true
+
         if [ "x${RUID}" != "xroot" ]; then
             if [ -f "/home/${RUID}/.config/user-dirs.dirs" ]; then
                 DT=$(sed -n -e 's|^XDG_DESKTOP_DIR="$HOME/||gp'  /home/${RUID}/.config/user-dirs.dirs | sed -n -e 's/"//gp')
