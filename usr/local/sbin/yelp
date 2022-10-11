@@ -1,16 +1,27 @@
 #!/bin/bash
 
-if ping -q -c 1 -W 1 8.8.8.8 >/dev/null; then
-  xdg-open "https://docs.hamonikr.org/hamonikr/" &> /dev/null
-else
-  if [ -f "/usr/share/help.pdf" ]; then
-    xdg-open "/usr/share/help.pdf" &> /dev/null
+if [ -f /etc/hamonikr/info ] ; then
+  . /etc/hamonikr/info
+  [ -z $USER_GUIDE_URL ] && USER_GUIDE_URL=https://docs.hamonikr.org/hamonikr/
+  
+  if ping -q -c 1 -W 1 8.8.8.8 >/dev/null; then
+    xdg-open "$USER_GUIDE_URL" &> /dev/null
   else
-        if [ "$LANG" = "ko_KR.UTF-8" ]; then
-                zenity --error --width=300 --text="도움말 파일을 찾을 수 없습니다." --title="오류"
-        else
-                zenity --error --width=300 --text="Coud not found /usr/share/help.pdf" --title="Error"
-        fi
-    
+    if [ -f "/usr/share/help.pdf" ]; then
+      xdg-open "/usr/share/help.pdf" &> /dev/null
+    else
+          if [ "$LANG" = "ko_KR.UTF-8" ]; then
+                  zenity --error --width=300 --text="도움말 파일을 찾을 수 없습니다." --title="오류"
+          else
+                  zenity --error --width=300 --text="Coud not found /usr/share/help.pdf" --title="Error"
+          fi
+      
+    fi
   fi
+
+else
+  /usr/local/bin/yelp
 fi
+
+
+ 
