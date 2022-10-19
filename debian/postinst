@@ -21,23 +21,27 @@ case "$1" in
             fi
         }
 
-        addKeyboardShortcut || true
+        if [ ! -z "$RUID" ] ; then
+        
+            addKeyboardShortcut || true
 
-        if [ "x${RUID}" != "xroot" ]; then
-            if [ -f "/home/${RUID}/.config/user-dirs.dirs" ]; then
-                DT=$(sed -n -e 's|^XDG_DESKTOP_DIR="$HOME/||gp'  /home/${RUID}/.config/user-dirs.dirs | sed -n -e 's/"//gp')
-                DT_NAME="/home/${RUID}/$DT"            
-            elif [ ! -f "/home/${RUID}/.config/user-dirs.dirs" ] && [ -f "/etc/xdg/user-dirs.defaults" ]; then
-                source /etc/xdg/user-dirs.defaults
-                DT_NAME="/home/${RUID}/$DESKTOP"
+            if [ "x${RUID}" != "xroot" ]; then
+                if [ -f "/home/${RUID}/.config/user-dirs.dirs" ]; then
+                    DT=$(sed -n -e 's|^XDG_DESKTOP_DIR="$HOME/||gp'  /home/${RUID}/.config/user-dirs.dirs | sed -n -e 's/"//gp')
+                    DT_NAME="/home/${RUID}/$DT"            
+                elif [ ! -f "/home/${RUID}/.config/user-dirs.dirs" ] && [ -f "/etc/xdg/user-dirs.defaults" ]; then
+                    source /etc/xdg/user-dirs.defaults
+                    DT_NAME="/home/${RUID}/$DESKTOP"
+                fi
+        
+                if [ ! -f "${DT_NAME}/hamonikr-help.desktop" ]; then
+                    cp -v /usr/share/applications/hamonikr-help.desktop ${DT_NAME}/hamonikr-help.desktop
+                    chmod +x ${DT_NAME}/hamonikr-help.desktop            
+                    chown ${RUID}:${RUID} ${DT_NAME}/hamonikr-help.desktop
+                fi
             fi
-    
-            if [ ! -f "${DT_NAME}/hamonikr-help.desktop" ]; then
-                cp -v /usr/share/applications/hamonikr-help.desktop ${DT_NAME}/hamonikr-help.desktop
-                chmod +x ${DT_NAME}/hamonikr-help.desktop            
-                chown ${RUID}:${RUID} ${DT_NAME}/hamonikr-help.desktop
-            fi
-        fi            
+
+        fi
 
         gtk-update-icon-cache
         update-icon-caches /usr/share/icons

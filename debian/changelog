@@ -1,3 +1,10 @@
+hamonikr-help (2.0.1) taebaek; urgency=medium
+
+  [Kevin]
+  * Fixed bug in postinst, prerm
+
+ -- HamoniKR <pkg@hamonikr.org>  Wed, 19 Oct 2022 14:16:33 +0900
+
 hamonikr-help (2.0.0) taebaek; urgency=medium
 
   * Release for HamoniKR 6.0
