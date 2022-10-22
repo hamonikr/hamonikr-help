@@ -1,3 +1,10 @@
+hamonikr-help (2.0.3) taebaek; urgency=medium
+
+  [Kevin]
+  * Removed create desktop icon part in postinst
+
+ -- HamoniKR <pkg@hamonikr.org>  Sat, 22 Oct 2022 19:34:59 +0900
+
 hamonikr-help (2.0.2) taebaek; urgency=medium
 
   [Kevin]
