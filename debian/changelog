@@ -1,3 +1,10 @@
+hamonikr-help (2.0.4) taebaek; urgency=medium
+
+  [JamesBae]
+  * Change pdf file
+
+ -- HamoniKR <pkg@hamonikr.org>  Wed, 21 Dec 2022 13:38:31 +0900
+
 hamonikr-help (2.0.3) taebaek; urgency=medium
 
   [Kevin]
