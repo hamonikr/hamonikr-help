@@ -1,3 +1,10 @@
+hamonikr-help (2.2.0) unstable; urgency=medium
+
+  [Kevin Kim]
+  * Release for HamoniKR paektu
+
+ -- HamoniKR <pkg@hamonikr.org>  Thu, 01 Aug 2024 11:32:00 +0900
+
 hamonikr-help (2.1.1) unstable; urgency=medium
 
   [Kevin Kim]

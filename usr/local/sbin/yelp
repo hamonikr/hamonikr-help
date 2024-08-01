@@ -2,7 +2,7 @@
 
 if [ -f /etc/hamonikr/info ] ; then
   . /etc/hamonikr/info
-  [ -z $USER_GUIDE_URL ] && USER_GUIDE_URL=https://docs.hamonikr.org/hamonikr/
+  [ -z $USER_GUIDE_URL ] && USER_GUIDE_URL="https://docs.hamonikr.org/hamonikr-8.0"
   
   if ping -q -c 1 -W 1 8.8.8.8 >/dev/null; then
     xdg-open "$USER_GUIDE_URL" &> /dev/null
